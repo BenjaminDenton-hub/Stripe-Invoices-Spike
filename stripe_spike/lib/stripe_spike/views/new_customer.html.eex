@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Customer</title>
+  </head>
+  <body style="text-align:center;">
+    <br>
+    <p>Here is your customer id: <%= customer_id %> . Please copy and keep it. Then please return to localhost:4001/</p>
+  </body>
+</html>

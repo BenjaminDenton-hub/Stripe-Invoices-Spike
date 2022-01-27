@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Customer</title>
+  </head>
+  <body>
+    <form style="text-align:center;" action="/new_customer" method="POST" accept-charset="utf-8">
+      <div>
+        <label for="name">Name: </label>
+        <br><br>
+        <input type="text" name="name" id="name">
+        <br><br>
+        <label for="name">Name: </label>
+        <br><br>
+        <input type="text" name="name" id="name">
+        <br><br>
+        <label for="name">Name: </label>
+        <br><br>
+        <input type="text" name="name" id="name">
+        <br><br>
+        <label for="name">Name: </label>
+        <br><br>
+        <input type="text" name="name" id="name">
+        <br><br>
+        <label for="name">Name: </label>
+        <br><br>
+        <input type="text" name="name" id="name">
+        <br><br>
+        <label for="name">Name: </label>
+        <br><br>
+        <input type="text" name="name" id="name">
+        <br><br>
+        <label for="name">Name: </label>
+        <br><br>
+        <input type="text" name="name" id="name">
+        <br><br>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

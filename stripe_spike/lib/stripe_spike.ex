@@ -12,7 +12,15 @@ defmodule StripeSpike do
       :world
 
   """
-  def hello do
-    :world
+  def create_customer() do
+    stuff
+  end
+
+  def create_invoice(customer_id) do
+    stuff
+  end
+
+  def get_invoice(invoice_id) do
+    stuff
   end
 end

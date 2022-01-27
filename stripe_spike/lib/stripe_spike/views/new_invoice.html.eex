@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Stripe Invoice</title>
+  </head>
+  <body style="text-align:center;">
+    <p>Please use go to this address to view your invoice: <%= invoice_url %></p>
+  </body>
+</html>

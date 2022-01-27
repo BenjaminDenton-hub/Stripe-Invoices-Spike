@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stripe Spike</title>
+  </head>
+  <body>
+    <form style="text-align:center;" action="/create_customer" method="GET" accept-charset="utf-8">
+      <div>
+        <p>New Customer?</p>
+        <br><br>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <br><br>
+    <form style="text-align:center;" action="/create_invoice" method="POST" accept-charset="utf-8">
+      <div>
+        <label for="customer_id">Existing Customer? Please enter customer ID to create invoice:</label>
+        <br><br>
+        <input type="text" name="customer_id" id="customer_id">
+        <br><br>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

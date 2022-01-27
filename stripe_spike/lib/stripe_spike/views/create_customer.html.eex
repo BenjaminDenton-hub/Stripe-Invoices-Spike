@@ -10,30 +10,33 @@
         <br><br>
         <input type="text" name="name" id="name">
         <br><br>
-        <label for="name">Name: </label>
+        <p>Please enter your billing address bellow: </p>
         <br><br>
-        <input type="text" name="name" id="name">
+        <label for="street_address">Street address: </label>
         <br><br>
-        <label for="name">Name: </label>
+        <input type="text" name="street_address" id="street_address">
         <br><br>
-        <input type="text" name="name" id="name">
+        <label for="city">City: </label>
         <br><br>
-        <label for="name">Name: </label>
+        <input type="text" name="city" id="city">
         <br><br>
-        <input type="text" name="name" id="name">
+        <label for="state">State: </label>
         <br><br>
-        <label for="name">Name: </label>
+        <input type="text" name="state" id="state">
         <br><br>
-        <input type="text" name="name" id="name">
+        <label for="zip_code">Zip Code: </label>
         <br><br>
-        <label for="name">Name: </label>
+        <input type="text" name="zip_code" id="zip_code">
         <br><br>
-        <input type="text" name="name" id="name">
+        <label for="country">Country: </label>
         <br><br>
-        <label for="name">Name: </label>
+        <input type="text" name="country" id="country">
         <br><br>
-        <input type="text" name="name" id="name">
+        <%# <p>Please enter your card info bellow:</p>
         <br><br>
+        <label for="card_number">Card Number: </label>
+        <br><br>
+        <input type="text" name="card_number" id="card_number"> %>
       </div>
       <button type="submit">Submit</button>
     </form>

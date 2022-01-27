@@ -14,7 +14,7 @@ defmodule StripeSpike.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :plug_cowboy],
+      extra_applications: [:logger, :plug_cowboy, :stripity_stripe],
       mod: {StripeSpike.Application, []}
     ]
   end
@@ -22,7 +22,8 @@ defmodule StripeSpike.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:stripity_stripe, "~> 2.0"}
     ]
   end
 end

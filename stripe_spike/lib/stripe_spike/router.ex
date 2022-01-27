@@ -17,7 +17,16 @@ defmodule StripeSpike.Router do
 
   post "/new_customer" do
     name = conn.body_params["name"]
-    customer_id = StripeSpike.create_customer(name)
+
+    address = %{
+      line1: conn.body_params["street_address"],
+      city: conn.body_params["city"],
+      state: conn.body_params["state"],
+      postal_code: conn.body_params["zip_code"],
+      country: conn.body_params["country"]
+    }
+
+    customer_id = StripeSpike.create_customer(name, address)
 
     render(conn, "new_customer.html", customer_id: customer_id)
   end
@@ -34,6 +43,10 @@ defmodule StripeSpike.Router do
   get "/invoice/:invoice_id" do
     invoice = StripeSpike.get_invoice(invoice_id)
 
+    Map.keys(invoice)
+    |> Enum.map(fn key -> "<br>#{key}: {#{map_crap(invoice[key])}}" end)
+    |> Enum.join(",<br>")
+
     render(conn, "invoice.html", invoice: invoice)
   end
 
@@ -49,5 +62,11 @@ defmodule StripeSpike.Router do
       |> EEx.eval_file(assigns)
 
     send_resp(conn, status || 200, body)
+  end
+
+  defp map_crap(map) do
+    Map.keys(map)
+    |> Enum.map(fn key -> "#{key}: #{map[key]}" end)
+    |> Enum.join(", ")
   end
 end

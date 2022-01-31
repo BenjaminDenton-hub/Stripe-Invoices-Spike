@@ -8,7 +8,6 @@ defmodule StripeSpike.Application do
 
   @impl true
   def start(_type, _args) do
-
     children = [
       # Starts a worker by calling: TextSharing.Worker.start_link(arg)
       # {TextSharing.Worker, arg}

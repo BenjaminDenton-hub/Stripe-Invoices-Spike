@@ -13,7 +13,7 @@ defmodule StripeSpike do
         :type => "card",
         :card => %{
           skip_validation: true,
-          number: "0000000000000000",
+          number: "4242424242424242",
           exp_month: 11,
           exp_year: 2030
         }
@@ -22,8 +22,8 @@ defmodule StripeSpike do
 
     {:ok, payment_method} =
       Stripe.Card.create(%{
-        :customer => stripe_customer,
-        :source => source
+        :customer => stripe_customer.id,
+        :source => source.id
       })
 
     {:ok, _result} =
@@ -34,23 +34,40 @@ defmodule StripeSpike do
 
   def create_invoice(customer_id) do
     {:ok, stripe_customer} = Stripe.Customer.retrieve(customer_id)
-    upcase_country = String.upcase(stripe_customer.address[:country])
+
+    invoice_lines = [
+      %Stripe.LineItem{
+        amount: 40,
+        discountable: false,
+        livemode: false,
+        proration: false,
+        quantity: 1
+      }
+    ]
+
+    upcase_country =
+      stripe_customer.address[:country]
+      |> String.upcase()
 
     if(upcase_country == "INDIA") do
       {:ok, invoice} =
-        Stripe.Invoice.create(%{
+        %{
           :collection_method => "send_invoice",
-          :customer => stripe_customer,
-          :days_until_due => 1
-        })
+          :customer => stripe_customer.id,
+          :days_until_due => 1,
+          :lines => invoice_lines
+        }
+        |> Stripe.Invoice.create()
 
       invoice.id
     else
       {:ok, invoice} =
-        Stripe.Invoice.create(%{
+        %{
           :collection_method => "charge_automatically",
-          :customer => stripe_customer
-        })
+          :customer => stripe_customer.id,
+          :lines => invoice_lines
+        }
+        |> Stripe.Invoice.create()
 
       invoice.id
     end

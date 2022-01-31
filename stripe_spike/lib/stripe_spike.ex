@@ -35,15 +35,13 @@ defmodule StripeSpike do
   def create_invoice(customer_id) do
     {:ok, stripe_customer} = Stripe.Customer.retrieve(customer_id)
 
-    invoice_lines = [
-      %Stripe.LineItem{
+    {:ok, invoice_lines} =
+      %{
         amount: 40,
-        discountable: false,
-        livemode: false,
-        proration: false,
-        quantity: 1
-      }
-    ]
+        customer: stripe_customer.id,
+        currency: "usd",
+        discountable: false
+      } |> Stripe.Invoiceitem.create()
 
     upcase_country =
       stripe_customer.address[:country]
@@ -54,8 +52,7 @@ defmodule StripeSpike do
         %{
           :collection_method => "send_invoice",
           :customer => stripe_customer.id,
-          :days_until_due => 1,
-          :lines => invoice_lines
+          :days_until_due => 1
         }
         |> Stripe.Invoice.create()
 
@@ -64,8 +61,7 @@ defmodule StripeSpike do
       {:ok, invoice} =
         %{
           :collection_method => "charge_automatically",
-          :customer => stripe_customer.id,
-          :lines => invoice_lines
+          :customer => stripe_customer.id
         }
         |> Stripe.Invoice.create()
 
@@ -73,8 +69,8 @@ defmodule StripeSpike do
     end
   end
 
-  def get_invoice(invoice_id) do
-    {:ok, invoice} = Stripe.Invoice.retrieve(invoice_id)
-    invoice
-  end
+  # def get_invoice(invoice_id) do
+  #   {:ok, invoice} = Stripe.Invoice.retrieve(invoice_id)
+  #   invoice
+  # end
 end

@@ -40,15 +40,15 @@ defmodule StripeSpike.Router do
     |> render("new_invoice.html", invoice_url: invoice_url)
   end
 
-  get "/invoice/:invoice_id" do
-    invoice = StripeSpike.get_invoice(invoice_id)
+  # get "/invoice/:invoice_id" do
+  #   invoice = StripeSpike.get_invoice(invoice_id)
 
-    Map.keys(invoice)
-    |> Enum.map(fn key -> "<br>#{key}: {#{map_crap(invoice[key])}}" end)
-    |> Enum.join(",<br>")
+  #   Map.keys(invoice)
+  #   |> Enum.map(fn key -> "<br>#{key}: {#{map_crap(invoice[key])}}" end)
+  #   |> Enum.join(",<br>")
 
-    render(conn, "invoice.html", invoice: invoice)
-  end
+  #   render(conn, "invoice.html", invoice: invoice)
+  # end
 
   match _ do
     send_resp(conn, 404, "404: not found")
